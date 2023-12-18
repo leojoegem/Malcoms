@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f8f8f8;
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .tab {
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .tab:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .device {
+            width: 200px;
+            margin: 20px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .device img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .device h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .device p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .device button {
+            background-color: #333;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .device button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="index.html" id="home-tab" class="tab">Home</a>
+    <a href="shop.html" id="shop-tab" class="tab">Shop</a>
+    <a href="profile.html" id="profile-tab" class="tab">Profile</a>
+</div>
+
+<div class="content">
+    <!-- Placeholder devices -->
+    <div class="device">
+        <img src="Images/s22ultra.jpeg" alt="iPhone Placeholder">
+        <h3>Samsung galaxy S22 Ultra</h3>
+        <p>$1,099</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/s22.jpeg" alt="Samsung Placeholder">
+        <h3>Samsung Galaxy S22</h3>
+        <p>$999</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/a13.jpg" alt="iPhone Placeholder">
+        <h3>Samsung galaxy A14</h3>
+        <p>$399</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/a13.jpg" alt="iPhone Placeholder">
+        <h3>Samsung galaxy A13</h3>
+        <p>$799</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/14pro.jpg" alt="iPhone Placeholder">
+        <h3>iPhone 13 pro</h3>
+        <p>$850</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/12pro.jpg" alt="iPhone Placeholder">
+        <h3>iPhone 13</h3>
+        <p>$999</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/12pro.jpg" alt="iPhone Placeholder">
+        <h3>iPhone 12 PRO</h3>
+        <p>$799</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/14pro.jpg" alt="iPhone Placeholder">
+        <h3>iPhone 12</h3>
+        <p>$799</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/12pro.jpg" alt="iPhone Placeholder">
+        <h3>iPhone XS Max</h3>
+        <p>$799</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/xs.jpeg" alt="iPhone Placeholder">
+        <h3>iPhone XS</h3>
+        <p>$399</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/x.png" alt="iPhone Placeholder">
+        <h3>iPhone 8 plus</h3>
+        <p>$299</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/11pro.jpg" alt="iPhone Placeholder">
+        <h3>iPhone 11 PRO</h3>
+        <p>$599</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="device">
+        <img src="Images/11.png" alt="iPhone Placeholder">
+        <h3>iPhone 11</h3>
+        <p>$499</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <!-- Add more devices as needed -->
+    <!-- Repeat the structure for each device -->
+
+</div>
+
+<script>
+    // JavaScript to handle tab switching
+    document.getElementById("home-tab").addEventListener("click", function () {
+        loadPage("home.html");
+    });
+
+    document.getElementById("shop-tab").addEventListener("click", function () {
+        loadPage("shop.html");
+    });
+
+    document.getElementById("profile-tab").addEventListener("click", function () {
+        loadPage("profile.html");
+    });
+
+    function loadPage(page) {
+        document.querySelector(".content").innerHTML = "Loading...";
+        setTimeout(function () {
+            fetch(page)
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector(".content").innerHTML = data;
+                })
+                .catch(error => {
+                    console.error("Error loading page:", error);
+                    document.querySelector(".content").innerHTML = "Error loading page.";
+                });
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
