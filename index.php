@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <div class="content">
-    <h1>Welcome to Our Phone Shop!</h1>
+    <h1>Salute!World</h1>
     <div class="about-us">
         <p>
             At Our Phone Shop, we are passionate about providing you with the latest and greatest smartphones.
