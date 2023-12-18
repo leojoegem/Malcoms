@@ -1,6 +1,6 @@
 // JavaScript to handle tab switching
 document.getElementById("home-tab").addEventListener("click", function () {
-    loadPage("home.html");
+    loadPage("index.php");
 });
 
 document.getElementById("shop-tab").addEventListener("click", function () {

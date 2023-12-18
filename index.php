@@ -1,3 +1,29 @@
+<?php
+// Assuming you have a valid database connection
+$conn = new mysqli("localhost", "root", "", "Phonestore", 3308);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_SESSION["name"])) {
+        $user_id = $_SESSION["id"];
+        $email = $conn->real_escape_string($_POST["email"]);
+        $inquiry_text = $conn->real_escape_string($_POST["inquiry"]);
+
+        // Insert the inquiry into the database
+        $insert_query = "INSERT INTO Phonestore.inquiries (user_id, email, inquiry_text) VALUES ($user_id, '$email', '$inquiry_text')";
+        $conn->query($insert_query);
+
+        // Update the has_inquiry column in the users table
+        $update_query = "UPDATE Phonestore.users SET has_inquiry = TRUE WHERE id = $user_id";
+        $conn->query($update_query);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,7 +147,7 @@
 <body>
 
 <div class="navbar">
-    <a href="index.html" id="home-tab" class="tab">Home</a>
+    <a href="index.php" id="home-tab" class="tab">Home</a>
     <a href="shop.html" id="shop-tab" class="tab">Shop</a>
     <a href="profile.html" id="profile-tab" class="tab">Profile</a>
 </div>
@@ -160,7 +186,7 @@
     <!-- Contact Us form -->
     <div class="contact-form">
         <h2>Contact Us for Inquiries</h2>
-        <form>
+        <form method="POST" action="index.php">
             <div class="form-group">
                 <label for="email">Your Email:</label>
                 <input type="email" id="email" name="email" required>
@@ -179,7 +205,7 @@
 <script>
     // JavaScript to handle tab switching
     document.getElementById("home-tab").addEventListener("click", function () {
-        loadPage("home.html");
+        loadPage("index.php");
     });
 
     document.getElementById("shop-tab").addEventListener("click", function () {

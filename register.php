@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("sss", $name, $email, $password);
 
     if ($stmt->execute()) {
-        header("Location: index.html"); // Corrected the file name to lowercase
+        header("Location: index.php"); // Corrected the file name to lowercase
         exit;
     } else {
         // Log the error instead of displaying it to the user
